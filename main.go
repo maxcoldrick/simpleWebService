@@ -9,7 +9,7 @@ import (
 func main() {
 	port := ":8082"
 	fmt.Printf("Starting server at port " + port + "\n")
-	http.HandleFunc("/default", handleDefault)
+	http.HandleFunc("/status", handleDefault)
 	err := http.ListenAndServe(port, nil)
 	if err != nil {
 		panic(err)
@@ -18,7 +18,7 @@ func main() {
 
 func handleDefault(w http.ResponseWriter, r *http.Request) {
         
-	responseJson, _ := json.Marshal(DefaultResponse{Message: "hello world"})
+	responseJson, _ := json.Marshal(DefaultResponse{Message: "ok"})
 
 	w.WriteHeader(http.StatusOK)
 	_, err := w.Write(responseJson)
